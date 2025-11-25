@@ -26,7 +26,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
         with:
-          images: richn987/mealplannerapi
+          images: richn987/mealplannerfrontend
           
       - name: Build and push Docker image
         id: push
@@ -41,7 +41,7 @@ jobs:
       - name: Generate artifact attestation
         uses: actions/attest-build-provenance@v3
         with:
-          subject-name: index.docker.io/richn987/mealplannerapi
+          subject-name: index.docker.io/richn987/mealplannerfrontend
           subject-digest: ${{ steps.push.outputs.digest }}
           push-to-registry: true
   
