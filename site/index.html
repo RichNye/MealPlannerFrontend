@@ -1,15 +1,23 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
-    <title>MealPlanner</title>
-  </head>
+<head>
+  <meta charset="utf-8" />
+  <title>Meal Planner</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
 
-  <h1>MealPlanner</h1>
+  <nav>
+    <div class="brand">Meal Planner</div>
+    <a href="#" id="auth-link">Loading...</a>
+  </nav>
 
-  <p>Showing 7 meals</p>
+  <h1>Meal Planner</h1>
+  <div id="status">Loading…</div>
+  <button id="reload">Give me new meals!</button>
+  <div id="rows" aria-live="polite"></div>
 
-  <button>Give me new meals!</button>
-
+  <script src="../assets/js/app.js"></script>
+</body>
 </html>
