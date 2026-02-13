@@ -1,4 +1,5 @@
-const API_URL = "/api/recipes";
+const baseURL = "http://127.0.0.1:8080"; // change if your API is hosted elsewhere
+const API_URL = `${baseURL}/api/recipes`;
 
 let isAuthenticated = false;
 

@@ -1,6 +1,6 @@
-const AUTH_STATUS_URL = "/api/auth/me"; // should return 200 if logged in, 401 if not
-const LOGIN_URL = "/login";
-const LOGOUT_URL = "/logout";
+const AUTH_STATUS_URL = `${baseURL}/me`; // should return 200 if logged in, 401 if not
+const LOGIN_URL = `${baseURL}/login`;
+const LOGOUT_URL = `${baseURL}/logout`;
 
 function updateNav() {
     const link = document.getElementById("auth-link");
@@ -10,7 +10,8 @@ function updateNav() {
         link.onclick = async (e) => {
             e.preventDefault();
             await fetch(LOGOUT_URL, {
-                method: "POST"
+                method: "POST",
+                credentials: "include"
             });
             isAuthenticated = false;
             updateNav();
@@ -18,22 +19,39 @@ function updateNav() {
         };
     } else {
         link.textContent = "Login";
-        link.onclick = (e) => {
+        link.onclick = async (e) => {
             e.preventDefault();
-            window.location.href = LOGIN_URL;
+
+            const email = prompt("Email:");
+            const password = prompt("Password:");
+
+            const success = await login(email, password);
+
+            if (success) {
+                isAuthenticated = true;
+                updateNav();
+                load();
+            }
         };
     }
 }
 
 async function checkAuth() {
+    console.log("Checking authentication status...");
     try {
-        const resp = await fetch(AUTH_STATUS_URL, {
+        const response = await fetch(AUTH_STATUS_URL, {
             credentials: "include"
         });
-        isAuthenticated = resp.ok;
-    } catch {
+        const result = await response.json();
+
+        isAuthenticated = result.isAuthenticated;
+        username = result.name || "User";
+
+        console.log("Authentication check result:", result);
+    } catch (err) {
         isAuthenticated = false;
     }
+    console.log("Authenticated:", isAuthenticated);
     updateNav();
 }
 
