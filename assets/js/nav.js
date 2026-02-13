@@ -1,6 +1,4 @@
 const AUTH_STATUS_URL = `${baseURL}/me`; // should return 200 if logged in, 401 if not
-const LOGIN_URL = `${baseURL}/login`;
-const LOGOUT_URL = `${baseURL}/logout`;
 
 function updateNav() {
     const link = document.getElementById("auth-link");
@@ -9,10 +7,7 @@ function updateNav() {
         link.textContent = "Logout";
         link.onclick = async (e) => {
             e.preventDefault();
-            await fetch(LOGOUT_URL, {
-                method: "POST",
-                credentials: "include"
-            });
+            await logout();
             isAuthenticated = false;
             updateNav();
             load(); // reload meals if your API behaviour changes by auth

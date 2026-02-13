@@ -1,4 +1,6 @@
 const REGISTER_URL = `${baseURL}/register`;
+const LOGIN_URL = `${baseURL}/login?useCookies=true`;
+const LOGOUT_URL = `${baseURL}/me/logout`;
 
 const form = document.getElementById("register-form");
 const errorDiv = document.getElementById("form-error");
@@ -38,6 +40,18 @@ async function login(email, password) {
     } catch (err) {
         console.error("Login error:", err);
         return false;
+    }
+}
+
+async function logout() {
+    try {
+        const response = await fetch(LOGOUT_URL, {
+            method: "POST",
+            credentials: "include"
+        });
+    }
+    catch (err) {
+        console.error("Logout error:", err);
     }
 }
 
