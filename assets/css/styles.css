@@ -89,3 +89,37 @@ button:hover {
 button:active {
     transform: scale(0.98);
 }
+
+.form-container {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 0.4rem;
+  font-weight: 500;
+}
+
+.form-group input {
+  padding: 0.6rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #888;
+}
+
+.form-error {
+  color: #b00020;
+  margin-bottom: 1rem;
+  min-height: 1.2rem;
+}
