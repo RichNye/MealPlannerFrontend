@@ -9,16 +9,24 @@
 <body>
 
   <nav>
-    <div class="brand">Meal Planner</div>
-    <a href="#" id="auth-link">Loading...</a>
+    <div class="brand">
+      <a href="../site/index.html" class="logo-link">
+        <img src="../assets/images/mealplannerlogo.png" 
+            alt="MealPlanner logo" 
+            class="logo">
+      </a>
+    </div>
+
+    <div id="auth-links"></div>
   </nav>
-  
+
   <div id="status">Loading…</div>
   <button id="reload">Give me new meals!</button>
   <div id="rows" aria-live="polite"></div>
 
-  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/core.js"></script>
   <script src="../assets/js/nav.js"></script>
+  <script src="../assets/js/app.js"></script>  
   <script src="../assets/js/auth.js"></script>
 </body>
 </html>

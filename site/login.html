@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Meal Planner - Register</title>
+  <title>Meal Planner - Login</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
@@ -16,12 +16,14 @@
             class="logo">
       </a>
     </div>
+
+    <div id="auth-links"></div>
   </nav>
 
-  <h1>Create a MealPlanner Account</h1>
+  <h1>Login to MealPlanner</h1>
 
   <section class="form-container">
-    <form id="register-form" novalidate>
+    <form id="login-form" novalidate>
       
       <div class="form-group">
         <label for="email">Email</label>
@@ -30,22 +32,34 @@
 
       <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" id="password" required minlength="6" />
-      </div>
-
-      <div class="form-group">
-        <label for="confirmPassword">Confirm Password</label>
-        <input type="password" id="confirmPassword" required minlength="6" />
+        <input type="password" id="password" required />
       </div>
 
       <div id="form-error" class="form-error" aria-live="polite"></div>
 
-      <button type="submit">Create Account</button>
+      <button type="submit">Login</button>
 
     </form>
+
+    <div class="oauth-divider">
+      <span>or</span>
+    </div>
+
+    <a href="http://localhost:5000/auth/google" class="google-btn">
+      <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google logo">
+      Sign in with Google
+    </a>
+
+    <p class="form-secondary">
+      New to MealPlanner? 
+      <a href="./register.html">Register here</a>
+    </p>
   </section>
+
   <script src="../assets/js/core.js"></script>
   <script src="../assets/js/nav.js"></script>
-  <script src="../assets/js/register.js"></script>
+  <script src="../assets/js/auth.js"></script>
+  <script src="../assets/js/login.js"></script>
+
 </body>
 </html>

@@ -1,53 +1,60 @@
-const AUTH_STATUS_URL = `${baseURL}/me`; // should return 200 if logged in, 401 if not
+const AUTH_STATUS_URL = `${baseURL}/me`;
 
 function updateNav() {
-    const link = document.getElementById("auth-link");
+    const container = document.getElementById("auth-links");
+    container.innerHTML = ""; // Clear existing content
 
     if (isAuthenticated) {
-        link.textContent = "Logout";
-        link.onclick = async (e) => {
+        const logoutBtn = document.createElement("a");
+        logoutBtn.href = "#";
+        logoutBtn.textContent = "Logout";
+        logoutBtn.onclick = async (e) => {
             e.preventDefault();
             await logout();
             isAuthenticated = false;
             updateNav();
-            load(); // reload meals if your API behaviour changes by auth
+            load?.(); // Only call if it exists
         };
+
+        container.appendChild(logoutBtn);
     } else {
-        link.textContent = "Login";
-        link.onclick = async (e) => {
-            e.preventDefault();
+        const registerLink = document.createElement("a");
+        registerLink.href = "../site/register.html";
+        registerLink.textContent = "Register";
 
-            const email = prompt("Email:");
-            const password = prompt("Password:");
+        const loginLink = document.createElement("a");
+        loginLink.href = "../site/login.html";
+        loginLink.textContent = "Login";
 
-            const success = await login(email, password);
 
-            if (success) {
-                isAuthenticated = true;
-                updateNav();
-                load();
-            }
-        };
+
+        container.appendChild(loginLink);
+        container.appendChild(registerLink);
     }
 }
 
 async function checkAuth() {
-    console.log("Checking authentication status...");
     try {
         const response = await fetch(AUTH_STATUS_URL, {
             credentials: "include"
         });
+
+        if (!response.ok) {
+            isAuthenticated = false;
+            updateNav();
+            return;
+        }
+
         const result = await response.json();
-
         isAuthenticated = result.isAuthenticated;
-        username = result.name || "User";
+        username = result.name || null;
 
-        console.log("Authentication check result:", result);
-    } catch (err) {
+    } catch {
         isAuthenticated = false;
     }
-    console.log("Authenticated:", isAuthenticated);
+
     updateNav();
+    return isAuthenticated;
 }
 
 checkAuth();
