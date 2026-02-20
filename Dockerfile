@@ -1,10 +1,10 @@
 FROM nginx:alpine
 
-# Copy your static web files into the correct directory
-COPY ./site /opt/MealPlannerWeb/
+# Copy web files into MealPlanner directory
+COPY ./site /opt/MealPlannerFrontend/
 
-# Copy your custom NGINX server config
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+# Copy custom nginx config
+COPY nginx.conf /etc/nginx/conf.d/mealplannerfrontend.conf
 
-# Expose the port your config listens on
+# Port 8090 used for frontend, 8080 for API
 EXPOSE 8090
