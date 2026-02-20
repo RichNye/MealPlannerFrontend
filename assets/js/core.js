@@ -1,3 +1,8 @@
-const baseURL = "http://localhost:8080"; // change if your API is hosted elsewhere
+// Base URL for API calls, determined by environment
+const baseURL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:8080"
+    : "";
+
 let isAuthenticated = false;
 let username = null;
