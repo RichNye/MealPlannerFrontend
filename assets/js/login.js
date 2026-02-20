@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const success = await login(email, password);
 
         if (success) {
-            window.location.href = "../site/index.html";
+            window.location.href = "index.html";
         } else {
             errorDiv.textContent = "Invalid login details.";
         }

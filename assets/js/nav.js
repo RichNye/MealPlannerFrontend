@@ -19,11 +19,11 @@ function updateNav() {
         container.appendChild(logoutBtn);
     } else {
         const registerLink = document.createElement("a");
-        registerLink.href = "../site/register.html";
+        registerLink.href = "register.html";
         registerLink.textContent = "Register";
 
         const loginLink = document.createElement("a");
-        loginLink.href = "../site/login.html";
+        loginLink.href = "login.html";
         loginLink.textContent = "Login";
 
 

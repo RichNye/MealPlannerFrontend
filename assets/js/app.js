@@ -50,7 +50,7 @@ async function load() {
         if (resp.status === 401) {
             status.textContent = 'You must log in to view meals.';
             reloadBtn.style.display = 'none';
-            window.location.href = "../site/login.html";
+            window.location.href = "login.html";
             return;
         }
 
