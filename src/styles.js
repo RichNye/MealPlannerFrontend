@@ -1064,12 +1064,13 @@ const styles = `
     background: white;
     border: 1.5px solid var(--border);
     border-radius: var(--radius);
-    padding: 16px;
+    padding: 16px 16px 16px 42px;
     cursor: pointer;
     text-align: left;
     font-family: 'DM Sans', sans-serif;
     transition: all 0.15s;
     width: 100%;
+    position: relative;
   }
 
   .picker-card:hover {
@@ -1084,13 +1085,15 @@ const styles = `
   }
 
   .picker-card-check {
+    position: absolute;
+    top: 16px;
+    left: 16px;
     width: 18px; height: 18px;
     border: 2px solid var(--border);
     border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 10px;
     background: white;
     color: white;
     transition: all 0.12s;
