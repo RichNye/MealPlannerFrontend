@@ -1,4 +1,4 @@
-const API_BASE = "http://192.168.178.29:8080";
+const API_BASE = "";
 
 export const api = {
   fetch: (path, opts = {}) =>
