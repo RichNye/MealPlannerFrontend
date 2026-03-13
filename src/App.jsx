@@ -56,11 +56,11 @@ export default function App() {
   }
 
   const navItems = [
-    { id: "dashboard", label: "Dashboard",    icon: "leaf" },
-    { id: "recipes",   label: "Recipes",      icon: "book" },
-    { id: "planner",   label: "Meal Planner", icon: "calendar" },
-    { id: "plans",     label: "Meal Plans",   icon: "list" },
-    { id: "profile",   label: "Profile",      icon: "user" },
+    { id: "dashboard", label: "Dashboard",    short: "Home",    icon: "leaf" },
+    { id: "recipes",   label: "Recipes",      short: "Recipes", icon: "book" },
+    { id: "planner",   label: "Meal Planner", short: "Planner", icon: "calendar" },
+    { id: "plans",     label: "Meal Plans",   short: "Plans",   icon: "list" },
+    { id: "profile",   label: "Profile",      short: "Profile", icon: "user" },
   ];
 
   // "plan-detail" is a sub-view of "plans" — keep "Meal Plans" highlighted
@@ -118,6 +118,20 @@ export default function App() {
         </main>
       </div>
       <ToastContainer />
+
+      {/* BOTTOM NAV (mobile only) */}
+      <nav className="bottom-nav">
+        {navItems.map((item) => (
+          <button
+            key={item.id}
+            className={`bottom-nav-item${activeNav === item.id ? " active" : ""}`}
+            onClick={() => setPage(item.id)}
+          >
+            <Icon name={item.icon} size={22} />
+            {item.short}
+          </button>
+        ))}
+      </nav>
     </>
   );
 }

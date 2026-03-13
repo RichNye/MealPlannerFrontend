@@ -327,8 +327,6 @@ const styles = `
 
   @media (max-width: 900px) {
     .app-shell { grid-template-columns: 1fr; }
-    .sidebar { display: none; }
-    .topbar { display: flex; }
   }
 
   /* ── SIDEBAR ── */
@@ -658,16 +656,6 @@ const styles = `
   }
 
   /* ── WEEK CALENDAR ── */
-  .week-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 10px;
-  }
-
-  @media (max-width: 900px) {
-    .week-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-
   .day-cell {
     background: white;
     border: 1.5px solid var(--border);
@@ -832,14 +820,45 @@ const styles = `
     margin-top: 24px;
   }
 
-  /* ── TOPBAR (mobile) ── */
-  .topbar {
+  /* ── BOTTOM NAV (mobile only) ── */
+  .bottom-nav {
     display: none;
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
     background: var(--sage-900);
-    padding: 14px 20px;
-    align-items: center;
-    justify-content: space-between;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    z-index: 50;
+    padding: 4px 0 env(safe-area-inset-bottom, 4px);
   }
+
+  @media (max-width: 900px) {
+    .bottom-nav { display: flex; }
+  }
+
+  .bottom-nav-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    padding: 8px 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--sage-500);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    transition: color 0.12s;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    line-height: 1;
+  }
+
+  .bottom-nav-item:hover { color: var(--sage-300); }
+  .bottom-nav-item.active { color: white; }
+  .bottom-nav-item.active svg { color: var(--sage-300); }
 
   /* ── EMPTY STATE ── */
   .empty-state {
@@ -1476,6 +1495,71 @@ const styles = `
 
   button.user-badge:hover { background: rgba(255,255,255,0.06); }
   button.user-badge.active { background: var(--sage-700); }
+
+  /* ── MOBILE OVERRIDES ── */
+  @media (max-width: 900px) {
+    /* Hide sidebar — bottom nav takes over */
+    .sidebar { display: none; }
+
+    /* Padding + clearance for bottom nav */
+    .main-content { padding: 20px 16px 88px; }
+
+    /* Unlock planner — let the whole page scroll on mobile */
+    .main-content--locked {
+      height: auto;
+      overflow-y: auto;
+      display: block;
+    }
+    .planner-page { display: block; }
+    .planner-body { display: flex; flex-direction: column; gap: 16px; }
+    .planner-section { flex: none; min-height: auto; }
+    .staged-scroll, .picker-scroll {
+      flex: none;
+      min-height: auto;
+      overflow-y: visible;
+      max-height: none;
+    }
+
+    /* Planner header + search */
+    .planner-section-header { flex-wrap: wrap; }
+    .picker-search { width: 100%; }
+
+    /* Staged items wrap on small screens */
+    .staged-item { flex-wrap: wrap; }
+    .staged-date-input { flex: 1 1 120px; }
+
+    /* Plan detail rows wrap */
+    .plan-meal-row { flex-wrap: wrap; gap: 8px; }
+    .plan-recipe-select { flex-basis: 100%; }
+
+    /* Plan list rows compact */
+    .plan-row { flex-wrap: wrap; gap: 8px; }
+
+    /* Toasts clear bottom nav */
+    .toast-container { bottom: 76px; right: 16px; left: 16px; align-items: center; }
+    .toast { max-width: 100%; }
+
+    /* Page titles compact */
+    .page-header { margin-bottom: 20px; }
+    .page-header h1 { font-size: 26px; }
+
+    /* Stats always 2-col */
+    .stats-row { grid-template-columns: repeat(2, 1fr); }
+
+    /* Recipes single col */
+    .card-grid { grid-template-columns: 1fr; }
+
+    /* Profile max-width */
+    .profile-stack { max-width: 100%; }
+  }
+
+  @media (max-width: 480px) {
+    .main-content { padding: 16px 12px 88px; }
+    .modal { padding: 24px 16px; }
+    .modal-overlay { padding: 12px; }
+    .planner-filters-inner { gap: 12px; }
+    .page-header h1 { font-size: 22px; }
+  }
 `;
 
 export default styles;
